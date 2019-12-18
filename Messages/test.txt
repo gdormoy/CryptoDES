@@ -1,0 +1,2 @@
+attention ceci est un test pour savoir comment fonctionne certaines fonctions données par le prof de cryptographie.
+Pour mon test j'ai aussi besoin de certain caractères spéciaux donc en voici ê â ù œ Ç.
