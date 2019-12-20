@@ -28,3 +28,16 @@ def aligneMat(mat) :
         for y in range(len(mat[x])):
             txt += str(mat[x][y])
     return txt
+
+def swap(c, i, j):
+    c = list(c)
+    c[i], c[j] = c[j], c[i]
+    return ''.join(c)
+
+# TODO search how make the permutation
+def permutation(mat1, mat2) :
+    for x in range(len(mat1)):
+        position = mat1[x] % (len(mat2) - 1)
+        print(f'permut {mat2[position]} with {mat2[x]} old position: {position} new position: {x}')
+        mat2 = swap(mat2, position, x)
+    return mat2
