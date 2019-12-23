@@ -57,3 +57,7 @@ def leftShift(key):
     last = key[0]
     key = key[1:] + last
     return key
+
+def concatenate(key1,key2):
+    key = key1 + key2
+    return key
