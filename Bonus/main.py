@@ -13,19 +13,22 @@ if __name__ == "__main__":
     f=open("../Messages/Clef_de_1.txt", "r")
     key=f.read()
     f.close()
-    key56bit = convert_64bit_to_56bit_key(key)
-    cp1 = Constantes['CP_1'][0]
-    PI = Constantes['PI'][0]
-    print(cp1)
-    test = "0101111001011011010100100111111101010001000110101011110010010001"
+    k = dict()
+    # k[0] = convert_64bit_to_56bit_key(key)
 
-    keyPermutation0 = permutation(cp1,test)
-    print(f'Key:\n{test}')
-    print(f'KeyPermutation:\n{keyPermutation0}')
+    # cp1 = Constantes['CP_1'][0]
+    # PI = Constantes['PI'][0]
+    test = "0101111001011011010100100111111101010001000110101011110010010001"
+    k[0] = convert_64bit_to_56bit_key(test)
+
+    keyPermutation0 = permutation(Constantes['CP_1'][0],test)
     cutingKey = cutKey(keyPermutation0)
-    print(cutingKey)
     cutingKey[0] = leftShift(cutingKey[0])
-    print(cutingKey)
+    cutingKey[1] = leftShift(cutingKey[1])
+    concatKey = concatenate(cutingKey[0],cutingKey[1])
+    k[1] = permutation(Constantes['CP_2'][0], concatKey)
+    print(k)
+
     bintxt = conv_bin(newtxt)
 
     cuttedBinTxt = cutBinText(bintxt)
