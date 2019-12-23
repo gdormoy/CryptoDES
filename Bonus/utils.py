@@ -34,10 +34,21 @@ def swap(c, i, j):
     c[i], c[j] = c[j], c[i]
     return ''.join(c)
 
-# TODO search how make the permutation
 def permutation(mat1, mat2) :
-    for x in range(len(mat1)):
-        position = mat1[x] % (len(mat2) - 1)
-        print(f'permut {mat2[position]} with {mat2[x]} old position: {position} new position: {x}')
-        mat2 = swap(mat2, position, x)
-    return mat2
+    res = ''
+    if type(mat2) != type(list()):
+        mat2 = list(mat2)
+    for x in (mat1):
+        res += mat2[x]
+    return res
+
+def cutKey(key):
+    res1, res2 = '', ""
+    if type(key) != type(list()):
+        key = list(key)
+    for x in range(len(key)):
+        if x < len(key)//2:
+            res1 += key[x]
+        else:
+            res2 += key[x]
+    return [res1, res2]
