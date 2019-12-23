@@ -52,3 +52,8 @@ def cutKey(key):
         else:
             res2 += key[x]
     return [res1, res2]
+
+def leftShift(key):
+    last = key[0]
+    key = key[1:] + last
+    return key
