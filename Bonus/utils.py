@@ -1,6 +1,7 @@
 from Extract_ConstantesDES import *
 from ConvAlphaBin import *
 
+# Reduce a key with 64 bits to a new key with 56 bits
 def convert_64bit_to_56bit_key(Key) :
     tmp = ' ' + Key
     newKey = ''
@@ -10,30 +11,26 @@ def convert_64bit_to_56bit_key(Key) :
 
     return newKey
 
+# Convert a binary string to a 64 bits binary string list
 def cutBinText(txt) :
     index = (len(txt) // 64) + 1
+    res = [''] * index
     tab = MatZero(index,64)
     count = 0
+
     for x in range(len(tab)):
         for y in range(len(tab[x])):
             if count < len(txt):
                 tab[x][y] = txt[count]
                 count += 1
 
-    return tab
+    for x in range(len(tab)):
+        for y in range(len(tab[x])):
+            res[x] += str(tab[x][y])
 
-def aligneMat(mat) :
-    txt = ''
-    for x in range(len(mat)):
-        for y in range(len(mat[x])):
-            txt += str(mat[x][y])
-    return txt
+    return res
 
-def swap(c, i, j):
-    c = list(c)
-    c[i], c[j] = c[j], c[i]
-    return ''.join(c)
-
+# Function to permut elements in array with array keys
 def permutation(mat1, mat2) :
     res = ''
     if type(mat2) != type(list()):
@@ -42,6 +39,7 @@ def permutation(mat1, mat2) :
         res += mat2[x]
     return res
 
+# Function to cut the key in the middle and return two keys
 def cutKey(key):
     res1, res2 = '', ""
     if type(key) != type(list()):
@@ -53,15 +51,18 @@ def cutKey(key):
             res2 += key[x]
     return [res1, res2]
 
+# Function to move the bits to the left
 def leftShift(key):
     last = key[0]
     key = key[1:] + last
     return key
 
+# Function to concatenate two keys and return one
 def concatenate(key1,key2):
     key = key1 + key2
     return key
 
+# Function to create the 16 keys for D.E.S encryption
 def createKeys(key, constantes):
     k = dict()
     k[0] = convert_64bit_to_56bit_key(key)
