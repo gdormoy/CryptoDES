@@ -61,3 +61,15 @@ def leftShift(key):
 def concatenate(key1,key2):
     key = key1 + key2
     return key
+
+def createKeys(key, constantes):
+    k = dict()
+    k[0] = convert_64bit_to_56bit_key(key)
+    keyPermutation = permutation(constantes['CP_1'][0],key)
+    cutingKey = cutKey(keyPermutation)
+    for x in range(1,17):
+        cutingKey[0] = leftShift(cutingKey[0])
+        cutingKey[1] = leftShift(cutingKey[1])
+        concatKey = concatenate(cutingKey[0],cutingKey[1])
+        k[x] = permutation(constantes['CP_2'][0], concatKey)
+    return k
