@@ -1,3 +1,4 @@
+import sys
 from Extract_ConstantesDES import *
 from ConvAlphaBin import *
 from utils import *
@@ -12,14 +13,26 @@ def encryption(key,txt):
     print(nib_vnoc(encryption))
     return encryption
 
+def decryption(key,txt):
+    print("DECRYPTION")
+    return None
+
 if __name__ == "__main__":
+    command = sys.argv[1]
+    text = sys.argv[2]
+    key = sys.argv[3]
+
     Constantes = recupConstantesDES()
-    f=open("../Messages/test.txt", "r")
+    f=open(text, "r")
     txt=f.read()
     f.close()
     newtxt = FiltreTXT(txt)
 
-    f=open("../Messages/Clef_de_1.txt", "r")
+    f=open(key, "r")
     key=f.read()
     f.close()
-    encryption(key,newtxt)
+
+    if command.upper() == "ENCRYPT":
+        encryption(key,newtxt)
+    elif command.upper() == "DECRYPT":
+        decryption(key,txt)
