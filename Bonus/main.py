@@ -19,16 +19,16 @@ def decryption(key,txt):
 
 if __name__ == "__main__":
     command = sys.argv[1]
-    text = sys.argv[2]
-    key = sys.argv[3]
+    pathToText = sys.argv[2]
+    pathToKey = sys.argv[3]
 
     Constantes = recupConstantesDES()
-    f=open(text, "r")
+    f=open(pathToText, "r")
     txt=f.read()
     f.close()
     newtxt = FiltreTXT(txt)
 
-    f=open(key, "r")
+    f=open(pathToKey, "r")
     key=f.read()
     f.close()
 
