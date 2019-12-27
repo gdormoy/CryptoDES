@@ -89,7 +89,8 @@ def permuteText(bintxt, constantes):
     return m
 
 def ronde(k,m,constantes):
-    res = dict()
+    res = ''
+    resTmp = dict()
     resCal = []
     for x in range(len(m) -1):
         cutingKey = cutKey(m[x+1])
@@ -120,5 +121,14 @@ def ronde(k,m,constantes):
 
         concat = cutingKey[0] + cutingKey[1]
         inverse = permutation(constantes['PI_I'][0], concat)
-        res[x] = inverse
+        resTmp[x] = inverse
+    res = ''.join(resTmp.values())
+    return res
+
+def decryptRonde(k,txt,constantes):
+    res = dict()
+    rev = permutation(constantes['PI'][0], txt)
+    print(rev)
+    cutingKey = cutKey(rev)
+    print(cutingKey)
     return res
