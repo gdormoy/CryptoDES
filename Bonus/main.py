@@ -10,17 +10,20 @@ def encryption(key,txt):
     m = permuteText(bintxt,Constantes)
     r = ronde(k,m,Constantes)
     encryption = ''.join(r.values())
-    print(nib_vnoc(encryption))
-    return encryption
+    res = nib_vnoc(encryption)
+    return {'binary': encryption, 'text': res}
 
 def decryption(key,txt):
     print("DECRYPTION")
-    return None
+    decrypt = ''
+    res = ''
+    return {'binary': decrypt, 'text': res}
 
 if __name__ == "__main__":
     command = sys.argv[1]
     pathToText = sys.argv[2]
     pathToKey = sys.argv[3]
+    res = dict()
 
     Constantes = recupConstantesDES()
     f=open(pathToText, "r")
@@ -33,6 +36,8 @@ if __name__ == "__main__":
     f.close()
 
     if command.upper() == "ENCRYPT":
-        encryption(key,newtxt)
+        res = encryption(key,newtxt)
     elif command.upper() == "DECRYPT":
-        decryption(key,txt)
+        res = decryption(key,txt)
+
+    print(res['text'])
