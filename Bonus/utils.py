@@ -57,6 +57,12 @@ def leftShift(key):
     key = key[1:] + last
     return key
 
+# Function to move the bits to the right
+def rightShift(key):
+    first = key[-1]
+    key = first + key[:-1]
+    return key
+
 # Function to concatenate two keys and return one
 def concatenate(key1,key2):
     key = key1 + key2
