@@ -18,16 +18,19 @@ def decryption(key,txt):
     print("DECRYPTION")
     decrypt = ''
     res = ''
-    # bintxt = conv_bin(txt)
-    bintxt = '1000100000110110101000010001001111001011011000001001010010010000'
+    bintxt = conv_bin(txt)
+    # bintxt = '1000100000110110101000010001001111001011011000001001010010010000'
     # print(txt)
     # print(bintxt)
     k = createKeys(key,Constantes)
-    r = decryptRonde(k,bintxt,Constantes)
-    # m = permuteText(bintxt,Constantes)
-    decrypt = ''.join(r.values())
-    res = nib_vnoc(decrypt)
-    print(decrypt)
+    m = permuteText(bintxt,Constantes)
+    # print('m', m)
+    r = decryptRonde(k,m,Constantes)
+    print(r)
+
+    # decrypt = ''.join(r.values())
+    res = nib_vnoc(r)
+    # print(decrypt)
     print(res)
     return {'binary': decrypt, 'text': res}
 
