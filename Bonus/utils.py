@@ -130,16 +130,18 @@ def decryptRonde(k,m,constantes):
     resTmp = dict()
     for x in range(len(m)):
         cutingKey = cutKey(m[x+1])
-        print(cutingKey)
+        # print(cutingKey)
         for y in range(16,0,-1):
+            # print(f'transformation: {y}, cutingKey: {cutingKey}')
             row = ""
             col = ""
             expension = permutation(constantes['E'][0],cutingKey[0])
             cal = bin(int(expension, 2) ^ int(k[y], 2))[2:]
             while len(cal) < len(expension):
                 cal = '0' + cal
-            # print(f'cal:{cal}')
+            # print(f'Cal: {cal}')
             resCal = [(cal[i:i+6]) for i in range(0, len(cal), 6)]
+            # print(f'resCal: {resCal}')
             for i in range(len(resCal)):
                 row = resCal[i][0] + resCal[i][-1]
                 col = resCal[i][1:-1]
@@ -148,7 +150,9 @@ def decryptRonde(k,m,constantes):
                     resCal[i] = '0' + resCal[i]
                 # print(resCal)
             strResCal = ''.join(resCal)
+            # print(f'strResCal: {strResCal}')
             permutStrResCal = permutation(constantes['PERM'][0], strResCal)
+            # print(f'permutStrResCal: {permutStrResCal}')
             tmp = cutingKey[0]
             value = bin(int(permutStrResCal, 2) ^ int(cutingKey[1],2))[2:]
             while len(value) < len(tmp):
@@ -157,7 +161,12 @@ def decryptRonde(k,m,constantes):
             cutingKey[1] = tmp
 
         concat = cutingKey[0] + cutingKey[1]
+        # print(f'concat: {concat}')
         inverse = permutation(constantes['PI_I'][0], concat)
         resTmp[x] = inverse
+        for x in resTmp:
+            print(f'{x}: {resTmp[x]} = {nib_vnoc(resTmp[x])}')
+        foo = ''.join(resTmp.values())
+        # print(f'res = {nib_vnoc(foo)}')
     res = ''.join(resTmp.values())
     return res
