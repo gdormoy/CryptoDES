@@ -11,11 +11,10 @@ def encryption(key,txt):
     m = permuteText(bintxt,Constantes)
     r = ronde(k,m,Constantes)
     res = nib_vnoc(r)
-    print(r)
-    return {'binary': encryption, 'text': res}
+    return {'binary': r, 'text': res}
 
 def decryption(key,txt):
-    print("DECRYPTION")
+    # print("DECRYPTION")
     decrypt = ''
     res = ''
     bintxt = conv_bin(txt)
@@ -25,7 +24,7 @@ def decryption(key,txt):
     r = decryptRonde(k,m,Constantes)
 
     res = nib_vnoc(r)
-    return {'binary': decrypt, 'text': res}
+    return {'binary': r, 'text': res}
 
 
 
