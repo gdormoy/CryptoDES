@@ -14,7 +14,6 @@ def encryption(key,txt):
     return {'binary': r, 'text': res}
 
 def decryption(key,txt):
-    # print("DECRYPTION")
     decrypt = ''
     res = ''
     bintxt = conv_bin(txt)
@@ -51,5 +50,7 @@ if __name__ == "__main__":
         res = encryption(key,txt)
     elif command.upper() == "DECRYPT":
         res = decryption(key,txt)
+    else:
+        print('You must bo choose between encrypt or decrypt function!')
 
     print(res['text'])
