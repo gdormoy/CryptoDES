@@ -92,8 +92,8 @@ def ronde(k,m,constantes):
     res = ''
     resTmp = dict()
     resCal = []
-    for x in range(len(m) -1):
-        cutingKey = cutKey(m[x+1])
+    for x in range(1,len(m)):
+        cutingKey = cutKey(m[x])
         for y in range(1,17):
             row = ""
             col = ""
@@ -128,8 +128,8 @@ def ronde(k,m,constantes):
 def decryptRonde(k,m,constantes):
     res = ''
     resTmp = dict()
-    for x in range(len(m)):
-        cutingKey = cutKey(m[x+1])
+    for x in range(1,len(m)):
+        cutingKey = cutKey(m[x])
         # print(cutingKey)
         for y in range(16,0,-1):
             # print(f'transformation: {y}, cutingKey: {cutingKey}')
@@ -161,12 +161,8 @@ def decryptRonde(k,m,constantes):
             cutingKey[1] = tmp
 
         concat = cutingKey[0] + cutingKey[1]
-        # print(f'concat: {concat}')
         inverse = permutation(constantes['PI_I'][0], concat)
         resTmp[x] = inverse
-        for x in resTmp:
-            print(f'{x}: {resTmp[x]} = {nib_vnoc(resTmp[x])}')
-        foo = ''.join(resTmp.values())
-        # print(f'res = {nib_vnoc(foo)}')
+
     res = ''.join(resTmp.values())
     return res
