@@ -4,23 +4,23 @@ from ConvAlphaBin import *
 from utils import *
 from pprint import pprint
 
-def encryption(key,txt):
+def encryption(key,txt, constantes):
     newtxt = FiltreTXT(txt)
     bintxt = conv_bin(newtxt)
-    k = createKeys(key,Constantes)
-    m = permuteText(bintxt,Constantes)
-    r = ronde(k,m,Constantes)
+    k = createKeys(key,constantes)
+    m = permuteText(bintxt,constantes)
+    r = ronde(k,m,constantes)
     res = nib_vnoc(r)
     return {'binary': r, 'text': res}
 
-def decryption(key,txt):
+def decryption(key,txt,constantes):
     decrypt = ''
     res = ''
     bintxt = conv_bin(txt)
     # bintxt = '1000100000110110101000010001001111001011011000001001010010010000'
-    k = createKeys(key,Constantes)
-    m = permuteText(bintxt,Constantes)
-    r = decryptRonde(k,m,Constantes)
+    k = createKeys(key,constantes)
+    m = permuteText(bintxt,constantes)
+    r = decryptRonde(k,m,constantes)
 
     res = nib_vnoc(r)
     return {'binary': r, 'text': res}
@@ -47,9 +47,9 @@ if __name__ == "__main__":
     key = key.rstrip()
 
     if command.upper() == "ENCRYPT":
-        res = encryption(key,txt)
+        res = encryption(key,txt,Constantes)
     elif command.upper() == "DECRYPT":
-        res = decryption(key,txt)
+        res = decryption(key,txt,Constantes)
     else:
         print('You must bo choose between encrypt or decrypt function!')
 

@@ -148,7 +148,6 @@ def decryptRonde(k,m,constantes):
                 resCal[i] = bin(int(constantes['S'][i][int(row,2)][int(col,2)]))[2:]
                 while len(resCal[i]) < 4:
                     resCal[i] = '0' + resCal[i]
-                # print(resCal)
             strResCal = ''.join(resCal)
             # print(f'strResCal: {strResCal}')
             permutStrResCal = permutation(constantes['PERM'][0], strResCal)
@@ -161,8 +160,7 @@ def decryptRonde(k,m,constantes):
             cutingKey[1] = tmp
 
         concat = cutingKey[0] + cutingKey[1]
-        inverse = permutation(constantes['PI_I'][0], concat)
-        resTmp[x] = inverse
+        resTmp[x] = permutation(constantes['PI_I'][0], concat)
 
     res = ''.join(resTmp.values())
     return res
