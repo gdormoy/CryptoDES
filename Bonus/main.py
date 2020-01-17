@@ -17,7 +17,6 @@ def encryption(key,txt, constantes):
     return {'binary': r, 'text': res}
 
 def decryption(key,txt,constantes):
-    decrypt = ''
     res = ''
     bintxt = conv_bin(txt)
     k = createKeys(key,constantes)
