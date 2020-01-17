@@ -41,7 +41,7 @@ def permutation(mat1, mat2) :
 
 # Function to cut the key in the middle and return two keys
 def cutKey(key):
-    res1, res2 = '', ""
+    res1, res2 = "", ""
     if type(key) != type(list()):
         key = list(key)
     for x in range(len(key)):
@@ -82,17 +82,15 @@ def createKeys(key, constantes):
     return k
 
 def permuteText(bintxt, constantes):
-    m = dict()
-    cuttedBinTxt = cutBinText(bintxt)
-    for x in range(len(cuttedBinTxt)):
-        m[x+1] = permutation(constantes['PI'][0], cuttedBinTxt[x])
+    m = permutation(constantes['PI'][0], bintxt)
     return m
 
 def ronde(k,m,constantes):
     res = ''
     resTmp = dict()
     resCal = []
-    for x in range(1,len(m)):
+    EDK = dict()
+    for x in range(0,len(m)):
         cutingKey = cutKey(m[x])
         for y in range(1,17):
             row = ""
@@ -101,7 +99,6 @@ def ronde(k,m,constantes):
             cal = bin(int(expension, 2) ^ int(k[y], 2))[2:]
             while len(cal) < len(expension):
                 cal = '0' + cal
-
             resCal = [(cal[i:i+6]) for i in range(0, len(cal), 6)]
             for i in range(len(resCal)):
                 row = resCal[i][0] + resCal[i][-1]
@@ -109,7 +106,6 @@ def ronde(k,m,constantes):
                 resCal[i] = bin(int(constantes['S'][i][int(row,2)][int(col,2)]))[2:]
                 while len(resCal[i]) < 4:
                     resCal[i] = '0' + resCal[i]
-
             strResCal = ''.join(resCal)
             permutStrResCal = permutation(constantes['PERM'][0], strResCal)
             tmp = cutingKey[1]
@@ -118,7 +114,6 @@ def ronde(k,m,constantes):
                 value = '0' + value
             cutingKey[1] = value
             cutingKey[0] = tmp
-
         concat = cutingKey[0] + cutingKey[1]
         inverse = permutation(constantes['PI_I'][0], concat)
         resTmp[x] = inverse
@@ -128,20 +123,18 @@ def ronde(k,m,constantes):
 def decryptRonde(k,m,constantes):
     res = ''
     resTmp = dict()
-    for x in range(1,len(m)):
+    resCal = []
+    EDK = dict()
+    for x in range(0,len(m)):
         cutingKey = cutKey(m[x])
-        # print(cutingKey)
         for y in range(16,0,-1):
-            # print(f'transformation: {y}, cutingKey: {cutingKey}')
             row = ""
             col = ""
             expension = permutation(constantes['E'][0],cutingKey[0])
             cal = bin(int(expension, 2) ^ int(k[y], 2))[2:]
             while len(cal) < len(expension):
                 cal = '0' + cal
-            # print(f'Cal: {cal}')
             resCal = [(cal[i:i+6]) for i in range(0, len(cal), 6)]
-            # print(f'resCal: {resCal}')
             for i in range(len(resCal)):
                 row = resCal[i][0] + resCal[i][-1]
                 col = resCal[i][1:-1]
@@ -149,18 +142,55 @@ def decryptRonde(k,m,constantes):
                 while len(resCal[i]) < 4:
                     resCal[i] = '0' + resCal[i]
             strResCal = ''.join(resCal)
-            # print(f'strResCal: {strResCal}')
             permutStrResCal = permutation(constantes['PERM'][0], strResCal)
-            # print(f'permutStrResCal: {permutStrResCal}')
             tmp = cutingKey[0]
             value = bin(int(permutStrResCal, 2) ^ int(cutingKey[1],2))[2:]
             while len(value) < len(tmp):
                 value = '0' + value
             cutingKey[0] = value
             cutingKey[1] = tmp
-
         concat = cutingKey[0] + cutingKey[1]
-        resTmp[x] = permutation(constantes['PI_I'][0], concat)
-
+        inverse = permutation(constantes['PI_I'][0], concat)
+        resTmp[x] = inverse
     res = ''.join(resTmp.values())
     return res
+
+
+    # res = ''
+    # resTmp = dict()
+    # for x in range(1,len(m)):
+    #     cutingKey = cutBinText(m[x])
+    #     # print(cutingKey)
+    #     for y in range(16,0,-1):
+    #         # print(f'transformation: {y}, cutingKey: {cutingKey}')
+    #         row = ""
+    #         col = ""
+    #         expension = permutation(constantes['E'][0],cutingKey[0])
+    #         cal = bin(int(expension, 2) ^ int(k[y], 2))[2:]
+    #         while len(cal) < len(expension):
+    #             cal = '0' + cal
+    #         # print(f'Cal: {cal}')
+    #         resCal = [(cal[i:i+6]) for i in range(0, len(cal), 6)]
+    #         # print(f'resCal: {resCal}')
+    #         for i in range(len(resCal)):
+    #             row = resCal[i][0] + resCal[i][-1]
+    #             col = resCal[i][1:-1]
+    #             resCal[i] = bin(int(constantes['S'][i][int(row,2)][int(col,2)]))[2:]
+    #             while len(resCal[i]) < 4:
+    #                 resCal[i] = '0' + resCal[i]
+    #         strResCal = ''.join(resCal)
+    #         # print(f'strResCal: {strResCal}')
+    #         permutStrResCal = permutation(constantes['PERM'][0], strResCal)
+    #         # print(f'permutStrResCal: {permutStrResCal}')
+    #         tmp = cutingKey[0]
+    #         value = bin(int(permutStrResCal, 2) ^ int(cutingKey[1],2))[2:]
+    #         while len(value) < len(tmp):
+    #             value = '0' + value
+    #         cutingKey[0] = value
+    #         cutingKey[1] = tmp
+    #
+    #     concat = cutingKey[0] + cutingKey[1]
+    #     resTmp[x] = permutation(constantes['PI_I'][0], concat)
+    #
+    # res = ''.join(resTmp.values())
+    # return res
