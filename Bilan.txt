@@ -10,5 +10,4 @@ d'autre part les permutations il y avait plusieurs comprehension possible,
 l'exemple donné permettait d'atteindre le même résultat de plusieurs façon différentes,
 (swap des éléments ou ajout dans un nouveau tableau).
 
-Ensuite pour le déchiffrement il suffit simplement d'executer l'inverse du chiffrement.
-Il faut donc faire attention a bien inverser le passage de D et G.
+Dans les prochains jour nous allons essayer de corriger le problème de déchiffrage
