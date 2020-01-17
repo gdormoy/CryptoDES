@@ -1,0 +1,14 @@
+Le projet est actuellement presque terminé, nous avons le chiffrements des messages,
+seul la partie déchiffrement pose encore problème,
+dans le sens ou lorsqu'un message est chiffré il est possible de le déchiffrer
+mais les méssages déja présent dans le dossier "Messages" ne se déchiffre pas correctement.
+Seul quelques ligne se déchiffrent, il nous manque a identifier le problème.
+
+Nous avons eu quelques difficulté à comprendre certain point du PDF tel que la 1re permutation
+se fait avec la clef sur 64bits et non sur 56bits.
+d'autre part les permutations il y avait plusieurs comprehension possible,
+l'exemple donné permettait d'atteindre le même résultat de plusieurs façon différentes,
+(swap des éléments ou ajout dans un nouveau tableau).
+
+Ensuite pour le déchiffrement il suffit simplement d'executer l'inverse du chiffrement.
+Il faut donc faire attention a bien inverser le passage de D et G.
