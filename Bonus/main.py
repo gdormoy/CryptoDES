@@ -39,15 +39,11 @@ if __name__ == "__main__":
     Constantes = recupConstantesDES()
     with open(pathToText, 'r',encoding='utf-8', errors='ignore') as file:
         txt = file.read()
-    txt = txt.rstrip("\r\n")
-    txt = txt.rstrip("\n")
-    txt = txt.rstrip()
+
 
     with open(pathToKey, 'r') as file:
         key = file.read()
-    key = key.rstrip("\r\n")
-    key = key.rstrip("\n")
-    key = key.rstrip()
+
 
     if command.upper() == "ENCRYPT":
         res = encryption(key,txt,Constantes)
@@ -57,6 +53,6 @@ if __name__ == "__main__":
         res['encrypt'] = encryption(key,txt,Constantes)
         res['decrypt'] = decryption(key,res['encrypt']['text'],Constantes)
     else:
-        print('You must bo choose between encrypt or decrypt function!')
+        print('You must bo choose between encrypt, decrypt or all function!')
 
     print(res['text'])
