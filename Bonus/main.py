@@ -36,13 +36,16 @@ if __name__ == "__main__":
     res = dict()
 
     Constantes = recupConstantesDES()
-    with open(pathToText, 'r',encoding='utf-8', errors='ignore') as file:
-        txt = file.read()
+    # with open(pathToText, 'r',encoding='utf-8', errors='ignore') as file:
+    #     txt = file.read()
+    txtFile = open(pathToText,"r")
+    txt = txtFile.read()
 
 
-    with open(pathToKey, 'r') as file:
-        key = file.read()
-
+    # with open(pathToKey, 'r') as file:
+    #     key = file.read()
+    keyFile = open(pathToKey,"r")
+    key = keyFile.read()
 
     if command.upper() == "ENCRYPT":
         res = encryption(key,txt,Constantes)
