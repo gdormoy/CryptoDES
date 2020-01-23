@@ -35,18 +35,16 @@ if __name__ == "__main__":
     pathToKey = sys.argv[3]
     res = dict()
 
+    #Load contantes
     Constantes = recupConstantesDES()
-    # with open(pathToText, 'r',encoding='utf-8', errors='ignore') as file:
-    #     txt = file.read()
+
+    #Reading file
     txtFile = open(pathToText,"r")
     txt = txtFile.read()
-
-
-    # with open(pathToKey, 'r') as file:
-    #     key = file.read()
     keyFile = open(pathToKey,"r")
     key = keyFile.read()
 
+    # Check Command
     if command.upper() == "ENCRYPT":
         res = encryption(key,txt,Constantes)
     elif command.upper() == "DECRYPT":
