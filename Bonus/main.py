@@ -7,6 +7,10 @@ from pprint import pprint
 def encryption(key,txt, constantes):
     bintxt = conv_bin(txt)
     k = createKeys(key,constantes)
+    if k == "error":
+        res = "Votre clef est incorrecte"
+        return {'binary': bintxt, 'text': res}
+
     m=cutBinText(bintxt)
     for x in range(0, len(m)):
         m[x] = permuteText(m[x],constantes)
@@ -18,6 +22,10 @@ def decryption(key,txt,constantes):
     res = ''
     bintxt = conv_bin(txt)
     k = createKeys(key,constantes)
+    if k == "error":
+        res = "Votre clef est incorrecte"
+        return {'binary': bintxt, 'text': res}
+        
     m=cutBinText(bintxt)
     for x in range(0, len(m)):
         m[x] = permuteText(m[x],constantes)

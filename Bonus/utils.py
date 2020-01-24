@@ -5,10 +5,18 @@ from ConvAlphaBin import *
 def convert_64bit_to_56bit_key(Key) :
     tmp = ' ' + Key
     newKey = ''
+    count = 0
     for x in range(len(tmp)):
         if x % 8 != 0:
             newKey += tmp[x]
-
+            if tmp[x] == '1':
+                count += 1
+        elif x % 8 == 0 and x != 0:
+            if tmp[x] == '1':
+                count += 1
+            if count % 2 == 0:
+                return "error"
+            count = 0
     return newKey
 
 # Convert a binary string to a 64 bits binary string list
@@ -72,6 +80,9 @@ def concatenate(key1,key2):
 def createKeys(key, constantes):
     k = dict()
     k[0] = convert_64bit_to_56bit_key(key)
+    if k[0] == "error":
+        return "error"
+
     keyPermutation = permutation(constantes['CP_1'][0],key)
     cutingKey = cutKey(keyPermutation)
     for x in range(1,17):
