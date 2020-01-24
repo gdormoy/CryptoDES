@@ -55,4 +55,7 @@ if __name__ == "__main__":
     else:
         print('You must bo choose between encrypt, decrypt or all function!')
 
+    txtFile.close()
+    keyFile.close()
+
     print(res['text'])
