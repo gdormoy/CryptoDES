@@ -5,13 +5,11 @@ from utils import *
 from pprint import pprint
 
 def encryption(key,txt, constantes):
-    #binaire = "1101110010111011110001001101010111100110111101111100001000110010100111010010101101101011111000110011101011011111"
     bintxt = conv_bin(txt)
     k = createKeys(key,constantes)
     m=cutBinText(bintxt)
     for x in range(0, len(m)):
         m[x] = permuteText(m[x],constantes)
-    #print(f'm: {m}')
     r = ronde(k,m,constantes)
     res = nib_vnoc(r)
     return {'binary': r, 'text': res}
@@ -35,7 +33,7 @@ if __name__ == "__main__":
     pathToKey = sys.argv[3]
     res = dict()
 
-    #Load contantes
+    #Load constantes
     Constantes = recupConstantesDES()
 
     #Reading file
